@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manasa Tadi - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Manasa Tadi</h1>
+    <nav>
+      <a href="#hero" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#tools">Tools</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div id="particles-js"></div>
+    <div class="content">
+      <div class="left">
+        <img src="imageee.png" alt="animation">
+      </div>
+      <div class="right">
+        <h2>Hi, I'm Manasa</h2>
+        <div class="typing"></div>
+        <div class="buttons">
+          <a href="resume.pdf" target="_blank" class="btn"><button>View Resume</button></a>
+          <button>Download Resume</button>
+        </div>
+        <div class="icons">
+          <a href="https://www.linkedin.com/in/manasa-tadi-259a20259/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:charmymanasa@gmail.com"><i class="fas fa-envelope"></i></a>
+          <a href="tel:+919573267323"><i class="fas fa-phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="left">
+      <h2>About Me</h2>
+      <br/>
+      <p>I’m an aspiring software developer passionate about coding, problem-solving, and building impactful digital solutions. My focus is on creating intuitive and efficient user experiences.</p>
+      <br/>
+      <p>Apart from coding, I enjoy activities that help me grow and recharge:</p>
+      <br/>
+      <ul>
+        <li>🎬 Exploring Movies & Storytelling</li>
+        <li>🖌️ Creative Sketching & Digital Art</li>
+        <li>🌍 Travelling & Discovering Cultures</li>
+      </ul>
+      <br/>
+      <p><em>"Code with creativity, build with purpose."</em></p>
+    </div>
+    <div class="right">
+      <img src="profile.jpg" alt="Profile Picture">
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Professional Skillset</h2>
+    <div class="skills-grid">
+      <div class="skill">Competitive Programming</div>
+      <div class="skill">Docker</div>
+      <div class="skill">Git</div>
+      <div class="skill">React</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">CSS</div>
+      <div class="skill">HTML</div>
+      <div class="skill">Networking</div>
+      <div class="skill">DBMS</div>
+      <div class="skill">OS</div>
+      <div class="skill">SQL</div>
+      <div class="skill">Linux</div>
+      <div class="skill">Java</div>
+      <div class="skill">Python</div>
+      <div class="skill">C++</div>
+      <div class="skill">C</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card" onclick="openModal(0)">
+        <img src="d1.png" alt="Project 1">
+        <h3>DreamConnect</h3>
+        <button>View More</button>
+      </div>
+      <div class="project-card" onclick="openModal(1)">
+        <img src="p1.png" alt="Project 2">
+        <h3>Planurise</h3>
+        <button>View More</button>
+      </div>
+      <div class="project-card" onclick="openModal(2)">
+        <img src="l1.png" alt="Project 3">
+        <h3>Digital Library</h3>
+        <button>View More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-body">
+        <!-- Carousel on left -->
+        <div class="carousel">
+          <img id="carouselImg" src="placeholder.jpg" alt="Project Screenshot">
+          <button class="prev" onclick="prevImg()">❮</button>
+          <button class="next" onclick="nextImg()">❯</button>
+        </div>
+
+        <!-- Details on right -->
+        <div class="details">
+          <h3 id="modalTitle">Project Title</h3>
+          <p id="modalDesc">This project demonstrates a powerful solution built with modern web technologies.</p>
+          <p id="modalExtra">
+            <strong>Tech Stack:</strong> React, Node.js, MongoDB, Docker <br>
+            <strong>Duration:</strong> Jan 2025 – Apr 2025 <br>
+            <strong>Role:</strong> Full-stack Developer (UI + API Integration)
+          </p>
+          <ul id="modalFeatures">
+            <li>✔️ Responsive, mobile-first design</li>
+            <li>✔️ Real-time updates & interactive features</li>
+            <li>✔️ Secure authentication and role management</li>
+            <li>✔️ Optimized backend for performance</li>
+          </ul>
+          <div class="links">
+            <a id="demoLink" href="#" target="_blank">🔗 Live Demo</a>
+            <a id="repoLink" href="#" target="_blank">💻 GitHub Repo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Experience -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="entry left">
+        <div class="content">
+          <h3>Frontend Developer Intern</h3>
+          <p>Technical Hub Pvt Ltd (2025)</p>
+          <ul>
+            <li>Worked with React Native basics</li>
+            <li>Contributed to DreamConnect UI/UX</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry right">
+        <div class="content">
+          <h3>Open Source Contributions</h3>
+          <p>GitHub Projects</p>
+          <ul>
+            <li>Bug fixing & feature enhancements</li>
+            <li>Collaborated with dev community</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="edu-cards">
+      <div class="edu-card">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>B.Tech CSE</h3>
+        <p>Aditya Engineering College</p>
+        <span>2023–2027 | CGPA: 9.44</span>
+      </div>
+      <div class="edu-card">
+        <i class="fas fa-school"></i>
+        <h3>Intermediate</h3>
+        <p>Sasi Junior College</p>
+        <span>2021–2023</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements" class="section">
+    <h2 class="section-title centered">Achievements</h2>
+    <div class="ach-grid">
+      
+      <!-- LeetCode -->
+      <div class="ach-card flip" data-count="250">
+        <div class="flip-inner">
+          <div class="front">
+            <h3 class="ach-num">0</h3>
+            <p class="ach-sub">Problems</p>
+            <p class="ach-platform">LeetCode</p>
+          </div>
+          <div class="back">
+            <i class="fas fa-code"></i>
+            <a href="https://leetcode.com/u/manasatadi/" target="_blank">Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CodeChef -->
+      <div class="ach-card flip no-count">
+        <div class="flip-inner">
+          <div class="front">
+            <h3 class="ach-num"><i class="fas fa-star"></i> <i class="fas fa-star"></i></h3>
+            <p class="ach-sub">Rating</p>
+            <p class="ach-platform">CodeChef</p>
+          </div>
+          <div class="back">
+            <i class="fas fa-utensils"></i>
+            <a href="https://www.codechef.com/users/m1349" target="_blank">Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- GeeksforGeeks -->
+      <div class="ach-card flip" data-count="150">
+        <div class="flip-inner">
+          <div class="front">
+            <h3 class="ach-num">0</h3>
+            <p class="ach-sub">Problems</p>
+            <p class="ach-platform">GeeksforGeeks</p>
+          </div>
+          <div class="back">
+            <i class="fas fa-book"></i>
+            <a href="https://www.geeksforgeeks.org/user/m1349/" target="_blank">Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- HackerRank -->
+      <div class="ach-card flip no-count">
+        <div class="flip-inner">
+          <div class="front">
+            <div class="hr-stars">
+              <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> SQL, C++</p>
+              <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> C, Python</p>
+            </div>
+            <p class="ach-platform">HackerRank</p>
+          </div>
+          <div class="back">
+            <i class="fab fa-hackerrank"></i>
+            <a href="https://www.hackerrank.com/profile/charmymanasa" target="_blank">Profile</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Certifications -->
+  <section id="certifications" class="section">
+    <h2 class="section-title centered">Certifications</h2>
+    <div class="cert-row">
+      <div class="cert-card"><h3 class="cert-name">Red Hat Certified System Administrator</h3><p class="company">Red Hat Academy</p><p class="year">2025</p><a class="view-btn" href="https://drive.google.com/file/d/1qefHpH2K4-cv0-AhDxtEzE_xaZ4xZk_q/view?usp=sharing">View</a></div>
+      <div class="cert-card"><h3 class="cert-name">Java Foundations Associate</h3><p class="company">Oracle Academy</p><p class="year">2025</p><a class="view-btn" href="https://drive.google.com/file/d/1ZCsupwMeIRLlZLoQTb0GEUDlbChNWWyG/view?usp=sharing">View</a></div>
+      <div class="cert-card"><h3 class="cert-name">IT Specialist</h3><p class="company">Pearson</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/10ciAtnowKmSO3uJVyaD6w0NkPafguqB2/view?usp=sharing">View</a></div>
+    </div>
+    <div class="cert-carousel-wrapper">
+      <div class="cert-carousel" id="certCarousel">
+        <div class="cert-card"><h3 class="cert-name">C</h3><p class="company">Cisco Networking Academy</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/10bJaV1e92710FfanUgSEXFp2JBAzH6nH/view?usp=sharing">View</a></div>
+        <div class="cert-card"><h3 class="cert-name">Python</h3><p class="company">Cisco Networking Academy</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/10_j7-mQMy7rIVhslOmwEwSx7B7t0E81q/view?usp=sharing">View</a></div>
+        <div class="cert-card"><h3 class="cert-name">Cybersecurity</h3><p class="company">Cisco Networking Academy</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/1_1ONSa4Q0AAi4wmihQ9TjcSkMekwP5pm/view?usp=sharing">View</a></div>
+        <div class="cert-card"><h3 class="cert-name">SQL</h3><p class="company">HackerRank</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/1hQ2t71psB5ff7nVUJ0QAcIKTxKH19q7P/view?usp=sharing">View</a></div>
+        <div class="cert-card"><h3 class="cert-name">Java</h3><p class="company">HackerRank</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/173ope3uVwuJ7GRCrYzzau3kT49naYy80/view?usp=sharing">View</a></div>
+        <div class="cert-card"><h3 class="cert-name">Python</h3><p class="company">HackerRank</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/10Zk7pC94FR1Ymu_bgAlbgc8gRHp32UgK/view?usp=sharing">View</a></div>
+        <div class="cert-card"><h3 class="cert-name">OS</h3><p class="company">Cisco Networking Academy</p><p class="year">2025</p><a class="view-btn" href="https://drive.google.com/file/d/10ghWKuClce8b1eKJJOH8HInxdH6YEucz/view?usp=sharing">View</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section id="tools" class="section">
+    <h2 class="section-title centered">Tools</h2>
+    <div class="tools-grid" id="toolsRow">
+      <i class="fab fa-git-alt tool" title="Git"></i>
+      <i class="fab fa-docker tool" title="Docker"></i>
+      <i class="fas fa-database tool" title="SQL Developer"></i>
+      <i class="fab fa-linux tool" title="Linux"></i>
+      <i class="fas fa-terminal tool" title="Terminal"></i>
+      <i class="fab fa-windows tool" title="Windows"></i>
+      <i class="fas fa-server tool" title="Server"></i>
+      <i class="fas fa-network-wired tool" title="Networking"></i>
+    </div>
+  </section>
+
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <h2 class="section-title centered">Contact Me</h2>
+    <div class="contact-wrap">
+      <div class="contact-left">
+        <p><i class="fas fa-envelope"></i> charmymanasa@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +91 95732 67323</p>
+        <p><i class="fas fa-map-marker-alt"></i> Andhra Pradesh, India</p>
+        <div class="contact-socials">
+          <a href="#"><i class="fas fa-envelope"></i></a>
+          <a href="#"><i class="fas fa-phone"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <form class="contact-right" action="https://formspree.io/f/mnqekayl" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="_replyto" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Message" rows="5"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Manasa Tadi. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="script1.js"></script>
+</body>
+</html>
