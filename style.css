@@ -40,8 +40,12 @@ nav a:hover::after,nav a.active::after{width:100%;}
 #about{background:#1a1a3d;display:flex;gap:50px;align-items:center;flex-wrap:wrap;min-height:80vh;}
 #about .left{flex:1;}
 #about .right{flex:1;display:flex;justify-content:center;}
-#about img{width:280px;height:280px;object-fit:cover;border-radius:50%;border:4px solid #f5e663;box-shadow:0 0 25px #f5e663;}
-#about img:hover{transform:scale(1.05);box-shadow:0 0 35px #f5e663;}
+#about img{width:280px;height:280px;object-fit:cover;border-radius:50%;border:4px solid rgb(84, 178, 84);box-shadow:0 0 25px #0f0;}
+/* #about img:hover{transform:scale(1.05);box-shadow:0 0 35px #f5e663;} */
+#about img:hover{transform:scale(1.05);box-shadow:0 0 35px #0f0;}
+
+
+
 
 /* ==== Skills ==== */
 #skills{background:#1a1a3d;flex-direction:column;text-align:center;min-height:90vh;}
@@ -50,6 +54,7 @@ nav a:hover::after,nav a.active::after{width:100%;}
 .skill{background:rgba(255,255,255,0.05);padding:18px;border-radius:12px;font-weight:600;opacity:0;transform:translateY(60px);text-align:center;}
 .skill.show{opacity:1;transform:translateY(0);transition:all .6s ease;}
 .skill:hover{transform:translateY(-8px);box-shadow:0 0 25px #0ff;}
+
 
 /* ==== Projects ==== */
 #projects{background:#1a1a3d;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center;}
@@ -60,6 +65,11 @@ nav a:hover::after,nav a.active::after{width:100%;}
 .project-card button{background:#9b59b6;color:#fff;box-shadow:0 0 10px #9b59b6;border:none;padding:10px 20px;border-radius:22px;cursor:pointer;}
 .project-card h3 { margin-bottom: 18px; }
 #projects h2 { margin-bottom: 30px; }
+.details { color: #fff; }
+.close { color: #fff; cursor: pointer; }
+.close:hover { color: #ff4f4f; }
+.carousel img { object-fit: contain; background:#000; }
+
 
 /* ==== Modal ==== */
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:2000;overflow-y:auto;padding-top:50px;}
@@ -81,6 +91,11 @@ nav a:hover::after,nav a.active::after{width:100%;}
 .details li::before{content:"• ";color:#9b59b6;font-weight:bold;}
 .links a{display:inline-block;margin-right:12px;padding:12px 20px;border-radius:22px;background:#9b59b6;color:#fff;text-decoration:none;box-shadow:0 0 10px #9b59b6;transition:0.3s;}
 .links a:hover{background:#b77ff6;box-shadow:0 0 20px #b77ff6;}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;  /* spacing between Demo & GitHub buttons */
+}
 
 /* ==== Experience ==== */
 #experience{position:relative;padding:60px 8%;background:#1a1a3d;}
@@ -119,6 +134,13 @@ nav a:hover::after,nav a.active::after{width:100%;}
 .cert-carousel .cert-card{flex:0 0 300px; min-height:200px;}
 @keyframes slide{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 #certifications .section-title { text-align: center; margin-bottom: 40px; font-size: 32px; }
+.cert-subhead {
+  text-align: center;
+  font-size: 22px;
+  margin: 20px 0 25px;
+  color: var(--cyan);
+  font-weight: 600;
+}
 
 
 /* ==== Achievements ==== */
@@ -169,7 +191,6 @@ nav a:hover::after,nav a.active::after{width:100%;}
 
   /* Header */
   header {
-    flex-direction: column;
     align-items: flex-start;
     padding: 10px 5%;
   }
@@ -258,20 +279,6 @@ nav a:hover::after,nav a.active::after{width:100%;}
     height: 16px;
   }
 
-  /* Certifications */
-  .cert-carousel-wrapper { overflow-x: auto; padding-bottom: 10px; }
-  .cert-carousel {
-    display: flex;
-    gap: 15px;
-    scroll-snap-type: x mandatory;
-    animation: none !important;
-  }
-  .cert-carousel .cert-card {
-    flex: 0 0 90%;
-    scroll-snap-align: start;
-    min-height: 220px;
-    margin-right: 10px;
-  }
 
   /* Contact */
   .contact-wrap { flex-direction: column; gap: 20px; }
@@ -294,37 +301,220 @@ nav a:hover::after,nav a.active::after{width:100%;}
     gap: 45px;
   }
   .tool { font-size: 30px; }
-  @media(max-width:768px){
+}
+@media(max-width:768px){
   /* Certifications - first 3 cards (static row) */
   .cert-row {
-    flex-direction: column;  /* stack vertically */
+    flex-direction: column;
     gap: 15px;
     align-items: center;
   }
   .cert-row .cert-card {
-    width: 90%;               /* full width with margin */
+    width: 90%;
     min-height: 180px;
     box-sizing: border-box;
-  }
-
-  /* Certifications carousel */
-  .cert-carousel-wrapper {
-    overflow-x: auto;
-    padding-bottom: 10px;
-  }
-  .cert-carousel {
-    display: flex;
-    gap: 15px;
-    scroll-snap-type: x mandatory;
-    animation: none !important; /* stop auto-scrolling on mobile */
-  }
-  .cert-carousel .cert-card {
-    flex: 0 0 90%;           /* show one card at a time */
-    scroll-snap-align: start;
-    min-height: 180px;
-    margin-right: 10px;
   }
 }
 
 
+/* Sidebar menu (mobile/tablet) */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0; right: -260px;  /* hidden off-screen */
+  width: 260px; height: 100%;
+  background: rgba(20,20,40,0.95);
+  backdrop-filter: blur(10px);
+  padding: 60px 20px;
+  transition: right 0.3s ease;
+  z-index: 2000;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sidebar a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.sidebar .close-btn {
+  position: absolute;
+  top: 15px; right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Show menu icon only on mobile/tablet */
+@media(max-width: 992px) {
+  header nav { display: none; }
+  .menu-toggle { display: block; }
+}
+
+
+@media(max-width:768px){
+  .close {
+    top: 10px;
+    right: 15px;
+    font-size: 26px;
+    z-index: 2100; /* ensure above content */
+  }
+}
+
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Mobile & tablet fixed size */
+@media(max-width: 1024px){
+  #skills .skills-grid .skill-item {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+
+#about ul {
+  list-style: disc inside; /* keep normal bullets */
+  padding-left: 15px; /* reduce left padding */
+}
+#about ul li {
+  margin: 6px 0; /* control vertical spacing */
+}
+
+html, body {
+  overflow-x: hidden; /* prevents horizontal scroll/extra space */
+}
+
+header nav a {
+  white-space: nowrap; /* stops long text pushing layout */
+}
+
+
+/* Card styling (common to all views) */
+#certCarousel .cert-card {
+  box-shadow: 0 0 20px rgba(0,255,255,0.6);
+  margin: 10px;
+  border-radius: 12px;
+  overflow: visible;
+}
+
+/* Desktop view (>1024px): CSS infinite scroll */
+@media(min-width: 1025px){
+  #certCarousel {
+    display: flex;
+    animation: slide 30s linear infinite;
+  }
+  #certCarousel .cert-card {
+    flex: 0 0 300px; /* fixed width cards */
+  }
+}
+
+/* Mobile & Tablet (<=1024px): one card per view */
+@media(max-width: 1024px){
+  #certCarousel {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    transform: translateX(0);
+  }
+  #certCarousel .cert-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Keyframes for desktop infinite loop */
+@keyframes slide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+  /* -50% works only if you duplicate the card set in HTML */
+}
+
+
+/* ============================
+   CERTIFICATIONS: unified fixes
+   Put this block at the END of mstyle.css
+   ============================ */
+
+/* Wrapper: hide scrollbar but give space for shadows */
+.cert-carousel-wrapper {
+  overflow: hidden;
+  padding: 22px 0; /* space to allow card shadows to be visible */
+}
+
+/* Inner carousel base */
+#certCarousel {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  margin: 0 -20px; /* balance wrapper padding so shadows remain visible */
+  will-change: transform;
+}
+
+/* Card appearance (common) */
+#certCarousel .cert-card {
+  box-shadow: 0 0 20px rgba(0,255,255,0.6);
+  border-radius: 12px;
+  overflow: visible; /* so inner content can show glow */
+  background-clip: padding-box;
+  margin: 0 20px;    /* visual spacing — balanced with carousel negative margins */
+}
+
+/* Desktop: keep your CSS animation (infinite) and use duplicated content for smooth loop */
+@media (min-width: 1025px) {
+  #certCarousel {
+    animation: slide 30s linear infinite;
+  }
+  #certCarousel .cert-card {
+    flex: 0 0 300px; /* your desktop card size */
+    max-width: 300px;
+  }
+}
+
+/* Mobile & Tablet: show exactly one card per view (JS will set precise widths) */
+@media (max-width: 1024px) {
+  #certCarousel {
+    animation: none !important;  /* disable CSS animation here */
+    transform: translateX(0);
+    transition: transform 0.6s ease;
+  }
+  #certCarousel .cert-card {
+    flex: 0 0 100%; /* will be overwritten by JS to exact pixel width */
+    max-width: 100%;
+  }
+}
+
+/* Desktop keyframes (keeps the smooth loop when content duplicated) */
+@keyframes slide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* requires duplicated cards in DOM */
+}
+
+@media (max-width: 1024px) {
+  #certCarousel {
+    gap: 0;              /* remove flex gap */
+    margin: 0;           /* reset margins */
+  }
+  #certCarousel .cert-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0;           /* remove side margins */
+  }
 }
