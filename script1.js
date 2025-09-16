@@ -7,13 +7,49 @@ function erase(){if(charIndex>0){typingElement.textContent=typingText[index].sub
 document.addEventListener("DOMContentLoaded",()=>type());
 
 // Section reveal
-const sections=document.querySelectorAll("section");
-function revealSections(){sections.forEach(sec=>{const top=sec.getBoundingClientRect().top;if(top<window.innerHeight-120&&!sec.classList.contains("show"))sec.classList.add("show");});}
-window.addEventListener("scroll",revealSections);revealSections();
+// const sections=document.querySelectorAll("section");
+// function revealSections(){sections.forEach(sec=>{const top=sec.getBoundingClientRect().top;if(top<window.innerHeight-120&&!sec.classList.contains("show"))sec.classList.add("show");});}
+// window.addEventListener("scroll",revealSections);revealSections();
+const sections = document.querySelectorAll("section");
+
+function revealSections(){
+  sections.forEach(sec=>{
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight-120 && !sec.classList.contains("show")){
+      sec.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealSections);
+
+// Delay first reveal, but still allow scroll to trigger immediately after
+document.addEventListener("DOMContentLoaded", ()=>{
+  setTimeout(()=>{ revealSections(); }, 600);
+});
+
+
+
 
 // Skills reveal
 const skillsSec=document.querySelector("#skills"),skillItems=[...document.querySelectorAll(".skill")];let skillsShown=false;
-function revealSkills(){const top=skillsSec.getBoundingClientRect().top;if(top<window.innerHeight-120&&!skillsShown){skillsShown=true;let batch=0;for(let i=0;i<skillItems.length;i+=4){setTimeout(()=>{skillItems.slice(i,i+4).forEach(it=>it.classList.add("show"));},batch*800);batch++;}}}
+// function revealSkills(){const top=skillsSec.getBoundingClientRect().top;if(top<window.innerHeight-120&&!skillsShown){skillsShown=true;let batch=0;for(let i=0;i<skillItems.length;i+=4){setTimeout(()=>{skillItems.slice(i,i+4).forEach(it=>it.classList.add("show"));},batch*800);batch++;}}}
+function revealSkills(){
+  const top = skillsSec.getBoundingClientRect().top;
+  if(top < window.innerHeight - 120 && !skillsShown){
+    skillsShown = true;
+    let batch = 0;
+    // 👇 2 at a time for <=768px, otherwise 4
+    let step = window.innerWidth <= 768 ? 2 : 4;
+    for(let i=0; i<skillItems.length; i+=step){
+      setTimeout(()=>{
+        skillItems.slice(i, i+step).forEach(it => it.classList.add("show"));
+      }, batch*800);
+      batch++;
+    }
+  }
+}
+
 window.addEventListener("scroll",revealSkills);
 
 // Active nav highlight
@@ -23,7 +59,6 @@ window.addEventListener("scroll",()=>{let current="";sections.forEach(sec=>{cons
 // Particles background
 particlesJS("particles-js",{"particles":{"number":{"value":120},"size":{"value":2},"move":{"speed":0.5},"line_linked":{"enable":false},"color":{"value":"#fff"},"opacity":{"value":0.8}}});
 
-// Project modal
 const projects = [
   {
     title: "DreamConnect",
@@ -60,8 +95,8 @@ const projects = [
   {
     title: "Digital Library",
     desc: "Book issuing and management system with admin dashboard, issue tracking, and user management. Still under development.",
-    demo: "#",
-    repo: "#",
+    demo: null, // no demo yet
+    repo: null, // no repo yet
     images: ["l2.png", "l3.png", "l4.png", "l5.png"],
     tech: "Python, Flask, SQL",
     duration: "Feb 2025 – Ongoing",
@@ -100,38 +135,168 @@ function openModal(i) {
     featuresList.appendChild(li);
   });
 
-  // Links
-  document.getElementById("demoLink").href = projects[i].demo;
-  document.getElementById("repoLink").href = projects[i].repo;
+  // Links: show/hide depending on availability
+  const demoLinkEl = document.getElementById("demoLink");
+  const repoLinkEl = document.getElementById("repoLink");
+  const badge = document.getElementById("modalBadge");
+  if (projects[i].demo) {
+    demoLinkEl.style.display = "inline-block";
+    demoLinkEl.href = projects[i].demo;
+  } else {
+    demoLinkEl.style.display = "none";
+  }
+  if (projects[i].repo) {
+    repoLinkEl.style.display = "inline-block";
+    repoLinkEl.href = projects[i].repo;
+  } else {
+    repoLinkEl.style.display = "none";
+  }
+  // If both missing, show "In Progress" badge
+  if (!projects[i].demo && !projects[i].repo) {
+    badge.style.display = "block";
+  } else {
+    badge.style.display = "none";
+  }
 
   // Carousel first image
-  document.getElementById("carouselImg").src = projects[i].images[0];
+  const carousel = document.getElementById("carouselImg");
+  if (projects[i].images && projects[i].images.length) {
+    carousel.src = projects[i].images[0];
+  } else {
+    carousel.src = "placeholder.jpg";
+  }
 
   // Show modal
-  document.getElementById("projectModal").style.display = "block";
+  const modal = document.getElementById("projectModal");
+  if (modal) {
+    modal.style.display = "block";
+    modal.setAttribute("aria-hidden", "false");
+  }
 }
 
 function closeModal() {
-  document.getElementById("projectModal").style.display = "none";
+  const modal = document.getElementById("projectModal");
+  if (modal) {
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+  }
 }
 
 function prevImg() {
   currentImg = (currentImg - 1 + projects[currentProj].images.length) % projects[currentProj].images.length;
   document.getElementById("carouselImg").src = projects[currentProj].images[currentImg];
 }
-
 function nextImg() {
   currentImg = (currentImg + 1) % projects[currentProj].images.length;
   document.getElementById("carouselImg").src = projects[currentProj].images[currentImg];
 }
-// ===== Extra Sections (from script1.js) =====
 
-// Certifications carousel pause
-const certCarousel=document.getElementById('certCarousel');
-if(certCarousel){
-  certCarousel.addEventListener('mouseover',()=>certCarousel.style.animationPlayState='paused');
-  certCarousel.addEventListener('mouseout',()=>certCarousel.style.animationPlayState='running');
+
+// ====== Certifications carousel (desktop: CSS anim, mobile: JS-driven) ======
+(function () {
+  const carouselWrapper = document.querySelector('.cert-carousel-wrapper');
+  const certCarousel = document.getElementById('certCarousel');
+  if (!carouselWrapper || !certCarousel) return;
+
+  // Save original content (first-time)
+  if (!certCarousel.dataset.original) {
+    certCarousel.dataset.original = certCarousel.innerHTML.trim();
+  }
+
+  function cleanupDesktopHandlers() {
+    certCarousel.onmouseover = null;
+    certCarousel.onmouseout = null;
+    // stop any transform
+    certCarousel.style.transform = '';
+    certCarousel.style.transition = '';
+    // clear interval if any
+    if (window.__certInterval) {
+      clearInterval(window.__certInterval);
+      window.__certInterval = null;
+    }
+  }
+
+  function initDesktop() {
+    cleanupDesktopHandlers();
+
+    // restore original and duplicate it for seamless CSS loop
+    const original = certCarousel.dataset.original;
+    certCarousel.innerHTML = original + original; // seamless loop needs duplicated set
+
+    // reset widths/styles
+    const cards = certCarousel.querySelectorAll('.cert-card');
+    cards.forEach(c => {
+      c.style.flex = '';
+      c.style.maxWidth = '';
+    });
+    certCarousel.style.width = '';
+    certCarousel.style.animation = certCarousel.style.animation || ''; // let CSS handle it
+
+    // add hover pause (desktop only)
+    certCarousel.onmouseover = () => {
+      certCarousel.style.animationPlayState = 'paused';
+    };
+    certCarousel.onmouseout = () => {
+      certCarousel.style.animationPlayState = 'running';
+    };
+  }
+
+function initMobileOrTablet() {
+  cleanupDesktopHandlers();
+
+  // restore original (single set) — JS slider will handle movement
+  const original = certCarousel.dataset.original;
+  certCarousel.innerHTML = original;
+
+  const cards = certCarousel.querySelectorAll('.cert-card');
+  if (!cards.length) return;
+
+  // compute exact pixel width we must slide by (wrapper's visible width)
+  const visibleWidth = carouselWrapper.clientWidth;
+
+  // set exact widths so each card occupies exactly visibleWidth
+  certCarousel.style.width = `${visibleWidth * cards.length}px`;
+
+  cards.forEach(card => {
+    card.style.flex = `0 0 ${visibleWidth}px`;
+    card.style.maxWidth = `${visibleWidth}px`;
+    card.style.margin = "0"; // 🔑 enforce no margin
+  });
+
+  // Auto-slide
+  let currentIndex = 0;
+
+  // clear previous interval if any
+  if (window.__certInterval) clearInterval(window.__certInterval);
+
+  window.__certInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    certCarousel.style.transform = `translateX(-${currentIndex * visibleWidth}px)`;
+    certCarousel.style.transition = 'transform 0.6s ease';
+  }, 3000);
 }
+
+  // initializer that chooses mode based on width
+  function initCertCarousel() {
+    const w = window.innerWidth;
+    if (w > 1024) {
+      initDesktop();
+    } else {
+      initMobileOrTablet();
+    }
+  }
+
+  // Run on load
+  document.addEventListener('DOMContentLoaded', initCertCarousel);
+
+  // Re-init on resize (debounced)
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(initCertCarousel, 150);
+  });
+})();
+
 
 // Achievement counters
 function animateValue(el,start,end,duration,appendPlus=false){
@@ -188,3 +353,14 @@ if(form){
     },1000);
   });
 }
+
+
+function openSidebar() {
+  document.getElementById("sidebar").style.right = "0";
+  document.body.style.overflow = "hidden"; // prevent background scroll
+}
+function closeSidebar() {
+  document.getElementById("sidebar").style.right = "-260px";
+  document.body.style.overflow = ""; 
+}
+
