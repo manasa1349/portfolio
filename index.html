@@ -24,7 +24,28 @@
       <a href="#tools">Tools</a>
       <a href="#contact">Contact</a>
     </nav>
+    <div class="menu-toggle" onclick="openSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+      <span class="close-btn" onclick="closeSidebar()">&times;</span>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#tools">Tools</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
+
+
 
   <!-- Hero -->
   <section id="hero">
@@ -38,7 +59,7 @@
         <div class="typing"></div>
         <div class="buttons">
           <a href="resume.pdf" target="_blank" class="btn"><button>View Resume</button></a>
-          <button>Download Resume</button>
+          <a href="resume.pdf" download class="btn btn-download"><button>Download Resume</button></a>
         </div>
         <div class="icons">
           <a href="https://www.linkedin.com/in/manasa-tadi-259a20259/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -137,6 +158,7 @@
             <strong>Duration:</strong> Jan 2025 – Apr 2025 <br>
             <strong>Role:</strong> Full-stack Developer (UI + API Integration)
           </p>
+          <div id="modalBadge" style="display:none;margin-bottom:12px;font-weight:700;color:#ffd54f;">In Progress</div>
           <ul id="modalFeatures">
             <li>✔️ Responsive, mobile-first design</li>
             <li>✔️ Real-time updates & interactive features</li>
@@ -272,11 +294,13 @@
   <!-- Certifications -->
   <section id="certifications" class="section">
     <h2 class="section-title centered">Certifications</h2>
+    <h3 class="cert-subhead">Global Certifications</h3>
     <div class="cert-row">
       <div class="cert-card"><h3 class="cert-name">Red Hat Certified System Administrator</h3><p class="company">Red Hat Academy</p><p class="year">2025</p><a class="view-btn" href="https://drive.google.com/file/d/1qefHpH2K4-cv0-AhDxtEzE_xaZ4xZk_q/view?usp=sharing">View</a></div>
       <div class="cert-card"><h3 class="cert-name">Java Foundations Associate</h3><p class="company">Oracle Academy</p><p class="year">2025</p><a class="view-btn" href="https://drive.google.com/file/d/1ZCsupwMeIRLlZLoQTb0GEUDlbChNWWyG/view?usp=sharing">View</a></div>
       <div class="cert-card"><h3 class="cert-name">IT Specialist</h3><p class="company">Pearson</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/10ciAtnowKmSO3uJVyaD6w0NkPafguqB2/view?usp=sharing">View</a></div>
     </div>
+    <h3 class="cert-subhead">Other Certifications</h3>
     <div class="cert-carousel-wrapper">
       <div class="cert-carousel" id="certCarousel">
         <div class="cert-card"><h3 class="cert-name">C</h3><p class="company">Cisco Networking Academy</p><p class="year">2024</p><a class="view-btn" href="https://drive.google.com/file/d/10bJaV1e92710FfanUgSEXFp2JBAzH6nH/view?usp=sharing">View</a></div>
@@ -315,10 +339,10 @@
         <p><i class="fas fa-phone"></i> +91 95732 67323</p>
         <p><i class="fas fa-map-marker-alt"></i> Andhra Pradesh, India</p>
         <div class="contact-socials">
-          <a href="#"><i class="fas fa-envelope"></i></a>
-          <a href="#"><i class="fas fa-phone"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="mailto:charmymanasa@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="tel:+919573267323" aria-label="Phone"><i class="fas fa-phone"></i></a>
+          <a href="https://www.linkedin.com/in/manasa-tadi-259a20259/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/manasa1349" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
       </div>
       <form class="contact-right" action="https://formspree.io/f/mnqekayl" method="POST">
